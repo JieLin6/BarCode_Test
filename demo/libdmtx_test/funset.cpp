@@ -3,8 +3,9 @@
 #include <iostream>
 #include <string>
 #include "dmtx.h"
+#include <opencv2/opencv.hpp>
 
-int data_matrix_encode()
+int test_data_matrix_base()
 {
 	std::string str = "中国_abc_DEF_123_@#$！";
 
@@ -56,10 +57,83 @@ int data_matrix_encode()
 	return 0;
 }
 
-int data_matrix_decode()
+int test_data_matrix_encode()
 {
+	std::string str = "中国_abc_DEF_123_@#$！HTTP://WWW.LIBDMTX.ORG";
 
+	DmtxEncode* enc = dmtxEncodeCreate();
+	assert(enc != NULL);
+	int ret = dmtxEncodeDataMatrix(enc, strlen(str.c_str()), (unsigned char*)str.c_str());
+	assert(ret == 1);
+
+	int width = dmtxImageGetProp(enc->image, DmtxPropWidth);
+	int height = dmtxImageGetProp(enc->image, DmtxPropHeight);
+	int bytesPerPixel = dmtxImageGetProp(enc->image, DmtxPropBytesPerPixel);
+	fprintf(stderr, "image width: %d, image height: %d, channels: %d\n", width, height, bytesPerPixel);
+	assert(bytesPerPixel == 1 || bytesPerPixel == 3 || bytesPerPixel == 4);
+
+	cv::Mat mat;
+	if (bytesPerPixel == 1)
+		mat = cv::Mat(height, width, CV_8UC1);
+	else if (bytesPerPixel == 3)
+		mat = cv::Mat(height, width, CV_8UC3);
+	else
+		mat = cv::Mat(height, width, CV_8UC4);
+
+	mat.data = enc->image->pxl;
+
+	std::string image_name = "E:/GitCode/BarCode_Test/test_images/data_matrix_encode.jpg";
+	cv::imwrite(image_name, mat);
+
+	dmtxEncodeDestroy(&enc);
 
 	return 0;
 }
 
+int test_data_matrix_decode()
+{
+	std::string image_name = "E:/GitCode/BarCode_Test/test_images/data_matrix_encode.jpg";
+	cv::Mat mat = cv::imread(image_name, 1);
+	if (!mat.data) {
+		fprintf(stderr, "read image error\n");
+		return -1;
+	}
+
+	int width = mat.cols;
+	int height = mat.rows;
+	int channels = mat.channels();
+
+	DmtxImage* img = dmtxImageCreate(mat.data, width, height, DmtxPack24bppRGB);
+	if (!img) {
+		fprintf(stderr, "dmtx image create fail\n");
+		return -1;
+	}
+
+	DmtxDecode* dec = dmtxDecodeCreate(img, 1);
+	if (!dec) {
+		fprintf(stderr, "dmtx decode create fail\n");
+		return -1;
+	}
+
+	DmtxRegion* reg = dmtxRegionFindNext(dec, nullptr);
+	if (!reg) {
+		fprintf(stderr, "dmtx region fail\n");
+		return -1;
+	}
+
+	DmtxMessage* msg = dmtxDecodeMatrixRegion(dec, reg, DmtxUndefined);
+	if (!msg) {
+		fprintf(stderr, "dmtx decode matrix region fail\n");
+		return -1;
+	}
+
+	std::string str(reinterpret_cast<char*>(msg->output));
+	fprintf(stderr, "decode result: %s\n", str.c_str());
+
+	dmtxMessageDestroy(&msg);
+	dmtxRegionDestroy(&reg);
+	dmtxDecodeDestroy(&dec);
+	dmtxImageDestroy(&img);
+
+	return 0;
+}

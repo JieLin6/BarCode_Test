@@ -1,5 +1,8 @@
 /doc/
 /lib/
 /obj/
+*.opensdf
+*.sdf
+*.suo
 
 
