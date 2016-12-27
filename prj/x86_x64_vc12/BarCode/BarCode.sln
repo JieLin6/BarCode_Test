@@ -5,10 +5,12 @@ VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libdmtx", "..\libdmtx\libdmtx.vcxproj", "{A1EFEFE4-F2D3-4C7D-A4EC-8F2E1968E659}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "barcodetest", "..\barcodetest\barcodetest.vcxproj", "{9456D473-B975-41BB-95ED-D3779B7BB71E}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libdmtx_test", "..\barcodetest\barcodetest.vcxproj", "{9456D473-B975-41BB-95ED-D3779B7BB71E}"
 	ProjectSection(ProjectDependencies) = postProject
 		{A1EFEFE4-F2D3-4C7D-A4EC-8F2E1968E659} = {A1EFEFE4-F2D3-4C7D-A4EC-8F2E1968E659}
 	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zxing", "..\zxing\zxing.vcxproj", "{8A3A3D18-F61F-48D8-BC27-D880F552F8F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,6 +26,8 @@ Global
 		{9456D473-B975-41BB-95ED-D3779B7BB71E}.Debug|x64.Build.0 = Debug|x64
 		{9456D473-B975-41BB-95ED-D3779B7BB71E}.Release|x64.ActiveCfg = Release|x64
 		{9456D473-B975-41BB-95ED-D3779B7BB71E}.Release|x64.Build.0 = Release|x64
+		{8A3A3D18-F61F-48D8-BC27-D880F552F8F4}.Debug|x64.ActiveCfg = Debug|x64
+		{8A3A3D18-F61F-48D8-BC27-D880F552F8F4}.Release|x64.ActiveCfg = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
