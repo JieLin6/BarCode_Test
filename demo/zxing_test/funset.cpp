@@ -32,31 +32,31 @@ int test_Aztec_decode()
 	zxing::Ref<zxing::Reader> reader;
 	reader.reset(new zxing::aztec::AztecReader);
 
-	//zxing::Ref<zxing::Binarizer> binarizer(new zxing::GlobalHistogramBinarizer(source));
-	//zxing::Ref<zxing::BinaryBitmap> bitmap(new zxing::BinaryBitmap(binarizer));
-	//zxing::Ref<zxing::Result> result(reader->decode(bitmap, zxing::DecodeHints(zxing::DecodeHints::AZTEC_HINT)));
+	zxing::Ref<zxing::Binarizer> binarizer(new zxing::GlobalHistogramBinarizer(source));
+	zxing::Ref<zxing::BinaryBitmap> bitmap(new zxing::BinaryBitmap(binarizer));
+	zxing::Ref<zxing::Result> result(reader->decode(bitmap, zxing::DecodeHints(zxing::DecodeHints::AZTEC_HINT)));
 
-	//std::string txt = "E:/GitCode/BarCode_Test/test_images/Aztec_tableShifts.txt";
-	//std::ifstream in(txt);
-	//if (!in.is_open()) {
-	//	fprintf(stderr, "fail to open file: %s\n", txt.c_str());
-	//	return -1;
-	//}
+	std::string txt = "E:/GitCode/BarCode_Test/test_images/Aztec_tableShifts.txt";
+	std::ifstream in(txt);
+	if (!in.is_open()) {
+		fprintf(stderr, "fail to open file: %s\n", txt.c_str());
+		return -1;
+	}
 
-	//std::string str1;
-	//std::getline(in, str1);
-	//fprintf(stderr, "actual        result: %s\n", str1.c_str());
-	//std::string str2 = result->getText()->getText();
-	//fprintf(stdout, "recognization result: %s\n", str2.c_str());
+	std::string str1;
+	std::getline(in, str1);
+	fprintf(stderr, "actual        result: %s\n", str1.c_str());
+	std::string str2 = result->getText()->getText();
+	fprintf(stdout, "recognization result: %s\n", str2.c_str());
 
-	//if (str1.compare(str2) == 0) {
-	//	fprintf(stderr, "=====  recognition is correct  =====\n");
-	//} else {
-	//	fprintf(stderr, "=====  recognition is wrong =====\n");
-	//	return -1;
-	//}
+	if (str1.compare(str2) == 0) {
+		fprintf(stderr, "=====  recognition is correct  =====\n");
+	} else {
+		fprintf(stderr, "=====  recognition is wrong =====\n");
+		return -1;
+	}
 
-	//in.close();
+	in.close();
 
 	return 0;
 }
