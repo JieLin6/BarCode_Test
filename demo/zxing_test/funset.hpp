@@ -3,5 +3,7 @@
 
 int test_Aztec_decode();
 int test_DataMatrix_decode();
+int test_Maxicode_decode();
+int test_PDF417_decode();
 
 #endif // FBC_ZXING_FUNSET_HPP_
