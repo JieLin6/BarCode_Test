@@ -30,12 +30,6 @@
     <ClCompile Include="..\..\..\src\zxing-cpp\core\src\bigint\BigUnsignedInABase.cc">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\zxing-cpp\core\src\zxing\aztec\decoder\Decoder.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\zxing-cpp\core\src\zxing\aztec\detector\Detector.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src\zxing-cpp\core\src\zxing\aztec\AztecDetectorResult.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -108,31 +102,13 @@
     <ClCompile Include="..\..\..\src\zxing-cpp\core\src\zxing\common\StringUtils.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\zxing-cpp\core\src\zxing\datamatrix\decoder\BitMatrixParser.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\zxing-cpp\core\src\zxing\datamatrix\decoder\DataBlock.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\zxing-cpp\core\src\zxing\datamatrix\decoder\DecodedBitStreamParser.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\zxing-cpp\core\src\zxing\datamatrix\decoder\Decoder.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src\zxing-cpp\core\src\zxing\datamatrix\detector\CornerPoint.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\zxing-cpp\core\src\zxing\datamatrix\detector\Detector.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\zxing-cpp\core\src\zxing\datamatrix\detector\DetectorException.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\zxing-cpp\core\src\zxing\datamatrix\DataMatrixReader.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\zxing-cpp\core\src\zxing\datamatrix\Version.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\zxing-cpp\core\src\zxing\multi\qrcode\detector\MultiDetector.cpp">
@@ -202,18 +178,6 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\zxing-cpp\core\src\zxing\pdf417\decoder\ec\ModulusPoly.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\zxing-cpp\core\src\zxing\pdf417\decoder\BitMatrixParser.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\zxing-cpp\core\src\zxing\pdf417\decoder\DecodedBitStreamParser.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\zxing-cpp\core\src\zxing\pdf417\decoder\Decoder.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\zxing-cpp\core\src\zxing\pdf417\detector\Detector.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\zxing-cpp\core\src\zxing\pdf417\detector\LinesSampler.cpp">
@@ -313,6 +277,42 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\zxing-cpp\core\src\zxing\ResultPointCallback.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\zxing-cpp\core\src\zxing\datamatrix\decoder\BitMatrixParser_datamatrix.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\zxing-cpp\core\src\zxing\pdf417\decoder\BitMatrixParser_pdf417.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\zxing-cpp\core\src\zxing\datamatrix\decoder\DataBlock_datamatrix.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\zxing-cpp\core\src\zxing\datamatrix\decoder\DecodedBitStreamParser_datamatrix.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\zxing-cpp\core\src\zxing\pdf417\decoder\DecodedBitStreamParser_pdf417.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\zxing-cpp\core\src\zxing\pdf417\decoder\Decoder_pdf417.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\zxing-cpp\core\src\zxing\datamatrix\decoder\Decoder_datamatrix.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\zxing-cpp\core\src\zxing\aztec\decoder\Decoder_aztec.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\zxing-cpp\core\src\zxing\aztec\detector\Detector_aztec.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\zxing-cpp\core\src\zxing\datamatrix\detector\Detector_datamatrix.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\zxing-cpp\core\src\zxing\pdf417\detector\Detector_pdf417.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\zxing-cpp\core\src\zxing\datamatrix\Version_datamatrix.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
