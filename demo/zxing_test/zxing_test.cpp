@@ -3,7 +3,7 @@
 
 int main()
 {
-	int ret = test_Aztec_decode();
+	int ret = test_DataMatrix_decode();
 
 	if (0 == ret) fprintf(stderr, "test success\n");
 	else fprintf(stderr, "test fail\n");
