@@ -3,7 +3,7 @@
 
 int main()
 {
-	int ret = test_PDF417_decode();
+	int ret = test_QRCode_decode();
 
 	if (0 == ret) fprintf(stderr, "test success\n");
 	else fprintf(stderr, "test fail\n");
