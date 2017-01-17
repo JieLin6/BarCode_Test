@@ -7,5 +7,6 @@ int test_Maxicode_decode();
 int test_PDF417_decode();
 int test_QRCode_decode();
 int test_Codabar_decode();
+int test_Code39_decode();
 
 #endif // FBC_ZXING_FUNSET_HPP_
