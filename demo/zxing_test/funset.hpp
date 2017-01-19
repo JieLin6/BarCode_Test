@@ -11,5 +11,6 @@ int test_Code39_decode();
 int test_Code93_decode();
 int test_Code128_decode();
 int test_EAN8_decode();
+int test_EAN13_decode();
 
 #endif // FBC_ZXING_FUNSET_HPP_
