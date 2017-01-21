@@ -13,5 +13,8 @@ int test_Code128_decode();
 int test_EAN8_decode();
 int test_EAN13_decode();
 int test_ITF25_decode();
+int test_RSS14_decode();
+int test_RSS_Expanded_decode();
+int test_UPC_A_decode();
 
 #endif // FBC_ZXING_FUNSET_HPP_
