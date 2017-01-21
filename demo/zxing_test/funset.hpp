@@ -16,5 +16,6 @@ int test_ITF25_decode();
 int test_RSS14_decode();
 int test_RSS_Expanded_decode();
 int test_UPC_A_decode();
+int test_UPC_E_decode();
 
 #endif // FBC_ZXING_FUNSET_HPP_
