@@ -29,6 +29,7 @@
 
 int test_UPC_E_decode()
 {
+	// Blog: http://blog.csdn.net/fengbingchun/article/details/54647142
 	std::string image_name = "E:/GitCode/BarCode_Test/test_images/UPC_E.png";
 	cv::Mat matSrc = cv::imread(image_name, 1);
 	if (!matSrc.data) {
@@ -79,6 +80,7 @@ int test_UPC_E_decode()
 
 int test_UPC_A_decode()
 {
+	// Blog: http://blog.csdn.net/fengbingchun/article/details/54647101
 	std::string image_name = "E:/GitCode/BarCode_Test/test_images/UPC_A.png";
 	cv::Mat matSrc = cv::imread(image_name, 1);
 	if (!matSrc.data) {
@@ -229,6 +231,7 @@ int test_RSS14_decode()
 
 int test_ITF25_decode()
 {
+	// Blog: http://blog.csdn.net/fengbingchun/article/details/54619699
 	std::string image_name = "E:/GitCode/BarCode_Test/test_images/ITF25.png";
 	cv::Mat matSrc = cv::imread(image_name, 1);
 	if (!matSrc.data) {
@@ -279,6 +282,7 @@ int test_ITF25_decode()
 
 int test_EAN13_decode()
 {
+	// Blog: http://blog.csdn.net/fengbingchun/article/details/54619624
 	std::string image_name = "E:/GitCode/BarCode_Test/test_images/EAN13.png";
 	cv::Mat matSrc = cv::imread(image_name, 1);
 	if (!matSrc.data) {
@@ -329,6 +333,7 @@ int test_EAN13_decode()
 
 int test_EAN8_decode()
 {
+	// Blog: http://blog.csdn.net/fengbingchun/article/details/54619482
 	std::string image_name = "E:/GitCode/BarCode_Test/test_images/EAN8.png";
 	cv::Mat matSrc = cv::imread(image_name, 1);
 	if (!matSrc.data) {
@@ -379,6 +384,7 @@ int test_EAN8_decode()
 
 int test_Code128_decode()
 {
+	// Blog: http://blog.csdn.net/fengbingchun/article/details/54604786
 	std::string image_name = "E:/GitCode/BarCode_Test/test_images/Code128.png";
 	cv::Mat matSrc = cv::imread(image_name, 1);
 	if (!matSrc.data) {
@@ -429,6 +435,7 @@ int test_Code128_decode()
 
 int test_Code93_decode()
 {
+	// Blog: http://blog.csdn.net/fengbingchun/article/details/54604651
 	std::string image_name = "E:/GitCode/BarCode_Test/test_images/Code93.png";
 	cv::Mat matSrc = cv::imread(image_name, 1);
 	if (!matSrc.data) {
@@ -480,6 +487,7 @@ int test_Code93_decode()
 
 int test_Code39_decode()
 {
+	// Blog: http://blog.csdn.net/fengbingchun/article/details/54587385
 	std::string image_name = "E:/GitCode/BarCode_Test/test_images/Code39.png";
 	cv::Mat matSrc = cv::imread(image_name, 1);
 	if (!matSrc.data) {
@@ -530,6 +538,7 @@ int test_Code39_decode()
 
 int test_Codabar_decode()
 {
+	// Blog: http://blog.csdn.net/fengbingchun/article/details/54577605
 	std::string image_name = "E:/GitCode/BarCode_Test/test_images/Codabar.png";
 	cv::Mat matSrc = cv::imread(image_name, 1);
 	if (!matSrc.data) {
@@ -580,6 +589,7 @@ int test_Codabar_decode()
 
 int test_QRCode_decode()
 {
+	// Blog: http://blog.csdn.net/fengbingchun/article/details/54577456
 	std::string image_name = "E:/GitCode/BarCode_Test/test_images/QRCode.png";
 	cv::Mat matSrc = cv::imread(image_name, 1);
 	if (!matSrc.data) {
@@ -630,6 +640,7 @@ int test_QRCode_decode()
 
 int test_PDF417_decode()
 {
+	// Blog: http://blog.csdn.net/fengbingchun/article/details/54432986
 	std::string image_name = "E:/GitCode/BarCode_Test/test_images/PDF417.png";
 	cv::Mat matSrc = cv::imread(image_name, 1);
 	if (!matSrc.data) {
@@ -738,6 +749,7 @@ static void utf8_to_gbk(const char* utf8, char* gbk) {
 
 int test_DataMatrix_decode()
 {
+	// Blog: http://blog.csdn.net/fengbingchun/article/details/54429722
 	std::string image_name = "E:/GitCode/BarCode_Test/test_images/data_matrix_encode.jpg";
 	cv::Mat matSrc = cv::imread(image_name, 1);
 	if (!matSrc.data) {
@@ -791,6 +803,7 @@ int test_DataMatrix_decode()
 
 int test_Aztec_decode()
 {
+	// Blog: http://blog.csdn.net/fengbingchun/article/details/54347391
 	std::string image_name = "E:/GitCode/BarCode_Test/test_images/Aztec_tableShifts.png";
 	cv::Mat matSrc = cv::imread(image_name, 1);
 	if (!matSrc.data) {

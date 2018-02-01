@@ -7,6 +7,7 @@
 
 int test_data_matrix_base()
 {
+	// Blog: http://blog.csdn.net/fengbingchun/article/details/44279967
 	std::string str = "ÖÐ¹ú_abc_DEF_123_@#$£¡";
 
 	/* 1) ENCODE a new Data Matrix barcode image (in memory only) */
