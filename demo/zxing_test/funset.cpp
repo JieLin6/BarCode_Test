@@ -1,4 +1,5 @@
 #include "funset.hpp"
+#include <string.h>
 #include <string>
 #include <fstream>
 #include <Windows.h>
@@ -620,9 +621,15 @@ int test_QRCode_decode()
 	}
 
 	std::string str1;
-	std::getline(in, str1);
+	std::getline(in, str1); // utf-8
+	str1 = utf8_to_gbk(str1.c_str());
 	fprintf(stderr, "actual        result: %s\n", str1.c_str());
-	std::string str2 = result->getText()->getText();
+
+	std::string str2 = result->getText()->getText(); // if it include chinese, then it's format is utf-8 bom
+	const char bom[] = { 0xEF, 0xBB, 0xBF }; //'0xEF', '0xBB', '0xBF';
+	if (strncmp(str2.data(), (const char*)bom, 3) == 0)
+		str2 = str2.substr(3, str2.length()); // utf-8, remove first three bytes: 0xEF, 0xBB, 0xBF
+	str2 = utf8_to_gbk(str2.c_str());
 	fprintf(stdout, "recognization result: %s\n", str2.c_str());
 
 	if (str1.compare(str2) == 0) {
