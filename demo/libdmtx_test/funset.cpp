@@ -1,4 +1,4 @@
-#include "funset.hpp"
+ï»¿#include "funset.hpp"
 #include <assert.h>
 #include <iostream>
 #include <string>
@@ -8,7 +8,7 @@
 int test_data_matrix_base()
 {
 	// Blog: http://blog.csdn.net/fengbingchun/article/details/44279967
-	std::string str = "ÖÐ¹ú_abc_DEF_123_@#$£¡";
+	std::string str = "ä¸­å›½_abc_DEF_123_@#$ï¼";
 
 	/* 1) ENCODE a new Data Matrix barcode image (in memory only) */
 	DmtxEncode* enc = dmtxEncodeCreate();
@@ -60,7 +60,9 @@ int test_data_matrix_base()
 
 int test_data_matrix_encode()
 {
-	std::string str = "ÖÐ¹ú_abc_DEF_123_@#$£¡HTTP://WWW.LIBDMTX.ORG";
+	// Blog: https://blog.csdn.net/fengbingchun/article/details/53889293
+
+	std::string str = "ä¸­å›½_abc_DEF_123_@#$ï¼HTTP://WWW.LIBDMTX.ORG";
 
 	DmtxEncode* enc = dmtxEncodeCreate();
 	assert(enc != NULL);
@@ -83,7 +85,11 @@ int test_data_matrix_encode()
 
 	mat.data = enc->image->pxl;
 
+#ifdef _MSC_VER
 	std::string image_name = "E:/GitCode/BarCode_Test/test_images/data_matrix_encode.jpg";
+#else
+	std::string image_name = "test_images/data_matrix_encode.jpg";
+#endif
 	cv::imwrite(image_name, mat);
 
 	dmtxEncodeDestroy(&enc);
@@ -93,7 +99,11 @@ int test_data_matrix_encode()
 
 int test_data_matrix_decode()
 {
+#ifdef _MSC_VER
 	std::string image_name = "E:/GitCode/BarCode_Test/test_images/data_matrix_encode.jpg";
+#else
+	std::string image_name = "test_images/data_matrix_encode.jpg";
+#endif
 	cv::Mat mat = cv::imread(image_name, 1);
 	if (!mat.data) {
 		fprintf(stderr, "read image error\n");

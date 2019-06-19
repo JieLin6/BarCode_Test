@@ -1,0 +1,9 @@
+1. libdmtx:
+	version: v0.7.5
+	commit: 53f001b
+	date: 2018.03.26
+	url: https://github.com/dmtx/libdmtx/releases
+2. zxing-cpp:
+	commit: 6b3cbe0
+	date: 2016.11.2
+	url: https://github.com/glassechidna/zxing-cpp

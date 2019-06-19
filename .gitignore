@@ -4,5 +4,8 @@
 *.opensdf
 *.sdf
 *.suo
-
-
+/test_images/
+/prj/linux_cmake_libdmtx_test/build/
+/prj/linux_cmake_libdmtx_test/test_images
+/prj/linux_cmake_zxing_test/build/
+/prj/linux_cmake_zxing_test/test_images

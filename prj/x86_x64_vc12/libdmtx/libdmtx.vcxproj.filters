@@ -15,79 +15,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\src\datamatrix\libdmtx-0.7.4\dmtx.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\datamatrix\libdmtx-0.7.4\dmtxbytelist.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\datamatrix\libdmtx-0.7.4\dmtxdecode.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\datamatrix\libdmtx-0.7.4\dmtxdecodescheme.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\datamatrix\libdmtx-0.7.4\dmtxencode.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\datamatrix\libdmtx-0.7.4\dmtxencodeascii.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\datamatrix\libdmtx-0.7.4\dmtxencodebase256.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\datamatrix\libdmtx-0.7.4\dmtxencodec40textx12.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\datamatrix\libdmtx-0.7.4\dmtxencodeedifact.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\datamatrix\libdmtx-0.7.4\dmtxencodeoptimize.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\datamatrix\libdmtx-0.7.4\dmtxencodescheme.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\datamatrix\libdmtx-0.7.4\dmtxencodestream.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\datamatrix\libdmtx-0.7.4\dmtximage.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\datamatrix\libdmtx-0.7.4\dmtxmatrix3.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\datamatrix\libdmtx-0.7.4\dmtxmessage.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\datamatrix\libdmtx-0.7.4\dmtxplacemod.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\datamatrix\libdmtx-0.7.4\dmtxreedsol.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\datamatrix\libdmtx-0.7.4\dmtxregion.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\datamatrix\libdmtx-0.7.4\dmtxscangrid.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\datamatrix\libdmtx-0.7.4\dmtxsymbol.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\datamatrix\libdmtx-0.7.4\dmtxtime.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\datamatrix\libdmtx-0.7.4\dmtxvector2.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <ClInclude Include="..\..\..\src\libdmtx\dmtx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\libdmtx\dmtxstatic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\src\datamatrix\libdmtx-0.7.4\dmtx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\datamatrix\libdmtx-0.7.4\dmtxstatic.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <ClCompile Include="..\..\..\src\libdmtx\dmtx.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

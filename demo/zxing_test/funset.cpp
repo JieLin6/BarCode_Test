@@ -2,7 +2,9 @@
 #include <string.h>
 #include <string>
 #include <fstream>
+#ifdef _MSC_VER
 #include <Windows.h>
+#endif
 
 #include <zxing/LuminanceSource.h>
 #include <zxing/common/Counted.h>
@@ -28,10 +30,36 @@
 
 #include "zxing/MatSource.h"
 
+namespace {
+
+std::string utf8_to_gbk(const char* utf8)
+{
+	std::string str;
+#ifdef _MSC_VER
+	char gbk[256];
+	const int maxlen = 256;
+	wchar_t unicode_str[maxlen];
+	int outlen = MultiByteToWideChar(CP_UTF8, 0, utf8, strlen(utf8), unicode_str, maxlen);
+	outlen = WideCharToMultiByte(CP_ACP, 0, unicode_str, outlen, gbk, 256, NULL, NULL);
+	gbk[outlen] = '\0';
+
+	str.assign(gbk);
+#else
+	str.assign(utf8);
+#endif
+	return str;
+}
+
+} // namespace
+
 int test_UPC_E_decode()
 {
 	// Blog: http://blog.csdn.net/fengbingchun/article/details/54647142
+#ifdef _MSC_VER
 	std::string image_name = "E:/GitCode/BarCode_Test/test_images/UPC_E.png";
+#else
+	std::string image_name = "test_images/UPC_E.png";
+#endif
 	cv::Mat matSrc = cv::imread(image_name, 1);
 	if (!matSrc.data) {
 		fprintf(stderr, "read image error: %s", image_name.c_str());
@@ -53,7 +81,11 @@ int test_UPC_E_decode()
 	zxing::Ref<zxing::BinaryBitmap> bitmap(new zxing::BinaryBitmap(binarizer));
 	zxing::Ref<zxing::Result> result(reader->decode(bitmap, zxing::DecodeHints(zxing::DecodeHints::UPC_E_HINT)));
 
+#ifdef _MSC_VER
 	std::string txt = "E:/GitCode/BarCode_Test/test_images/UPC_E.txt";
+#else
+	std::string txt = "test_images/UPC_E.txt";
+#endif
 	std::ifstream in(txt);
 	if (!in.is_open()) {
 		fprintf(stderr, "fail to open file: %s\n", txt.c_str());
@@ -68,8 +100,7 @@ int test_UPC_E_decode()
 
 	if (str1.compare(str2) == 0) {
 		fprintf(stderr, "=====  recognition is correct  =====\n");
-	}
-	else {
+	} else {
 		fprintf(stderr, "=====  recognition is wrong =====\n");
 		return -1;
 	}
@@ -82,7 +113,11 @@ int test_UPC_E_decode()
 int test_UPC_A_decode()
 {
 	// Blog: http://blog.csdn.net/fengbingchun/article/details/54647101
+#ifdef _MSC_VER
 	std::string image_name = "E:/GitCode/BarCode_Test/test_images/UPC_A.png";
+#else
+	std::string image_name = "test_images/UPC_A.png";
+#endif
 	cv::Mat matSrc = cv::imread(image_name, 1);
 	if (!matSrc.data) {
 		fprintf(stderr, "read image error: %s", image_name.c_str());
@@ -104,7 +139,11 @@ int test_UPC_A_decode()
 	zxing::Ref<zxing::BinaryBitmap> bitmap(new zxing::BinaryBitmap(binarizer));
 	zxing::Ref<zxing::Result> result(reader->decode(bitmap, zxing::DecodeHints(zxing::DecodeHints::UPC_A_HINT)));
 
+#ifdef _MSC_VER
 	std::string txt = "E:/GitCode/BarCode_Test/test_images/UPC_A.txt";
+#else
+	std::string txt = "test_images/UPC_A.txt";
+#endif
 	std::ifstream in(txt);
 	if (!in.is_open()) {
 		fprintf(stderr, "fail to open file: %s\n", txt.c_str());
@@ -119,8 +158,7 @@ int test_UPC_A_decode()
 
 	if (str1.compare(str2) == 0) {
 		fprintf(stderr, "=====  recognition is correct  =====\n");
-	}
-	else {
+	} else {
 		fprintf(stderr, "=====  recognition is wrong =====\n");
 		return -1;
 	}
@@ -132,7 +170,11 @@ int test_UPC_A_decode()
 
 int test_RSS_Expanded_decode()
 {
+#ifdef _MSC_VER
 	std::string image_name = "E:/GitCode/BarCode_Test/test_images/RSS_Expanded.png";
+#else
+	std::string image_name = "test_images/RSS_Expanded.png";
+#endif
 	cv::Mat matSrc = cv::imread(image_name, 1);
 	if (!matSrc.data) {
 		fprintf(stderr, "read image error: %s", image_name.c_str());
@@ -153,8 +195,11 @@ int test_RSS_Expanded_decode()
 	zxing::Ref<zxing::Binarizer> binarizer(new zxing::GlobalHistogramBinarizer(source));
 	zxing::Ref<zxing::BinaryBitmap> bitmap(new zxing::BinaryBitmap(binarizer));
 	//zxing::Ref<zxing::Result> result(reader->decode(bitmap, zxing::DecodeHints(zxing::DecodeHints::RSS_EXPANDED_HINT)));
-
+#ifdef _MSC_VER
 	//std::string txt = "E:/GitCode/BarCode_Test/test_images/RSS_Expanded.txt";
+#else
+	//std::string txt = "test_images/RSS_Expanded.txt";
+#endif
 	//std::ifstream in(txt);
 	//if (!in.is_open()) {
 	//	fprintf(stderr, "fail to open file: %s\n", txt.c_str());
@@ -182,7 +227,11 @@ int test_RSS_Expanded_decode()
 
 int test_RSS14_decode()
 {
+#ifdef _MSC_VER
 	std::string image_name = "E:/GitCode/BarCode_Test/test_images/RSS14.png";
+#else
+	std::string image_name = "test_images/RSS14.png";
+#endif
 	cv::Mat matSrc = cv::imread(image_name, 1);
 	if (!matSrc.data) {
 		fprintf(stderr, "read image error: %s", image_name.c_str());
@@ -204,7 +253,11 @@ int test_RSS14_decode()
 	zxing::Ref<zxing::BinaryBitmap> bitmap(new zxing::BinaryBitmap(binarizer));
 	//zxing::Ref<zxing::Result> result(reader->decode(bitmap, zxing::DecodeHints(zxing::DecodeHints::RSS_14_HINT)));
 
+#ifdef _MSC_VER
 	//std::string txt = "E:/GitCode/BarCode_Test/test_images/RSS14.txt";
+#else
+	//std::string txt = "test_images/RSS14.txt";
+#endif
 	//std::ifstream in(txt);
 	//if (!in.is_open()) {
 	//	fprintf(stderr, "fail to open file: %s\n", txt.c_str());
@@ -233,7 +286,11 @@ int test_RSS14_decode()
 int test_ITF25_decode()
 {
 	// Blog: http://blog.csdn.net/fengbingchun/article/details/54619699
+#ifdef _MSC_VER
 	std::string image_name = "E:/GitCode/BarCode_Test/test_images/ITF25.png";
+#else
+	std::string image_name = "test_images/ITF25.png";
+#endif
 	cv::Mat matSrc = cv::imread(image_name, 1);
 	if (!matSrc.data) {
 		fprintf(stderr, "read image error: %s", image_name.c_str());
@@ -255,7 +312,11 @@ int test_ITF25_decode()
 	zxing::Ref<zxing::BinaryBitmap> bitmap(new zxing::BinaryBitmap(binarizer));
 	zxing::Ref<zxing::Result> result(reader->decode(bitmap, zxing::DecodeHints(zxing::DecodeHints::ITF_HINT)));
 
+#ifdef _MSC_VER
 	std::string txt = "E:/GitCode/BarCode_Test/test_images/ITF25.txt";
+#else
+	std::string txt = "test_images/ITF25.txt";
+#endif
 	std::ifstream in(txt);
 	if (!in.is_open()) {
 		fprintf(stderr, "fail to open file: %s\n", txt.c_str());
@@ -284,7 +345,11 @@ int test_ITF25_decode()
 int test_EAN13_decode()
 {
 	// Blog: http://blog.csdn.net/fengbingchun/article/details/54619624
+#ifdef _MSC_VER
 	std::string image_name = "E:/GitCode/BarCode_Test/test_images/EAN13.png";
+#else
+	std::string image_name = "test_images/EAN13.png";
+#endif
 	cv::Mat matSrc = cv::imread(image_name, 1);
 	if (!matSrc.data) {
 		fprintf(stderr, "read image error: %s", image_name.c_str());
@@ -306,7 +371,11 @@ int test_EAN13_decode()
 	zxing::Ref<zxing::BinaryBitmap> bitmap(new zxing::BinaryBitmap(binarizer));
 	zxing::Ref<zxing::Result> result(reader->decode(bitmap, zxing::DecodeHints(zxing::DecodeHints::EAN_13_HINT)));
 
+#ifdef _MSC_VER
 	std::string txt = "E:/GitCode/BarCode_Test/test_images/EAN13.txt";
+#else
+	std::string txt = "test_images/EAN13.txt";
+#endif
 	std::ifstream in(txt);
 	if (!in.is_open()) {
 		fprintf(stderr, "fail to open file: %s\n", txt.c_str());
@@ -335,7 +404,11 @@ int test_EAN13_decode()
 int test_EAN8_decode()
 {
 	// Blog: http://blog.csdn.net/fengbingchun/article/details/54619482
+#ifdef _MSC_VER
 	std::string image_name = "E:/GitCode/BarCode_Test/test_images/EAN8.png";
+#else
+	std::string image_name = "test_images/EAN8.png";
+#endif
 	cv::Mat matSrc = cv::imread(image_name, 1);
 	if (!matSrc.data) {
 		fprintf(stderr, "read image error: %s", image_name.c_str());
@@ -357,7 +430,11 @@ int test_EAN8_decode()
 	zxing::Ref<zxing::BinaryBitmap> bitmap(new zxing::BinaryBitmap(binarizer));
 	zxing::Ref<zxing::Result> result(reader->decode(bitmap, zxing::DecodeHints(zxing::DecodeHints::EAN_8_HINT)));
 
+#ifdef _MSC_VER
 	std::string txt = "E:/GitCode/BarCode_Test/test_images/EAN8.txt";
+#else
+	std::string txt = "test_images/EAN8.txt";
+#endif
 	std::ifstream in(txt);
 	if (!in.is_open()) {
 		fprintf(stderr, "fail to open file: %s\n", txt.c_str());
@@ -386,7 +463,11 @@ int test_EAN8_decode()
 int test_Code128_decode()
 {
 	// Blog: http://blog.csdn.net/fengbingchun/article/details/54604786
+#ifdef _MSC_VER
 	std::string image_name = "E:/GitCode/BarCode_Test/test_images/Code128.png";
+#else
+	std::string image_name = "test_images/Code128.png";
+#endif
 	cv::Mat matSrc = cv::imread(image_name, 1);
 	if (!matSrc.data) {
 		fprintf(stderr, "read image error: %s", image_name.c_str());
@@ -408,7 +489,11 @@ int test_Code128_decode()
 	zxing::Ref<zxing::BinaryBitmap> bitmap(new zxing::BinaryBitmap(binarizer));
 	zxing::Ref<zxing::Result> result(reader->decode(bitmap, zxing::DecodeHints(zxing::DecodeHints::CODE_128_HINT)));
 
+#ifdef _MSC_VER
 	std::string txt = "E:/GitCode/BarCode_Test/test_images/Code128.txt";
+#else
+	std::string txt = "test_images/Code128.txt";
+#endif
 	std::ifstream in(txt);
 	if (!in.is_open()) {
 		fprintf(stderr, "fail to open file: %s\n", txt.c_str());
@@ -437,7 +522,11 @@ int test_Code128_decode()
 int test_Code93_decode()
 {
 	// Blog: http://blog.csdn.net/fengbingchun/article/details/54604651
+#ifdef _MSC_VER
 	std::string image_name = "E:/GitCode/BarCode_Test/test_images/Code93.png";
+#else
+	std::string image_name = "test_images/Code93.png";
+#endif
 	cv::Mat matSrc = cv::imread(image_name, 1);
 	if (!matSrc.data) {
 		fprintf(stderr, "read image error: %s", image_name.c_str());
@@ -459,7 +548,11 @@ int test_Code93_decode()
 	zxing::Ref<zxing::BinaryBitmap> bitmap(new zxing::BinaryBitmap(binarizer));
 	zxing::Ref<zxing::Result> result(reader->decode(bitmap, zxing::DecodeHints(zxing::DecodeHints::CODE_93_HINT)));
 
+#ifdef _MSC_VER
 	std::string txt = "E:/GitCode/BarCode_Test/test_images/Code93.txt";
+#else
+	std::string txt = "test_images/Code93.txt";
+#endif
 	std::ifstream in(txt);
 	if (!in.is_open()) {
 		fprintf(stderr, "fail to open file: %s\n", txt.c_str());
@@ -489,7 +582,11 @@ int test_Code93_decode()
 int test_Code39_decode()
 {
 	// Blog: http://blog.csdn.net/fengbingchun/article/details/54587385
+#ifdef _MSC_VER
 	std::string image_name = "E:/GitCode/BarCode_Test/test_images/Code39.png";
+#else
+	std::string image_name = "test_images/Code39.png";
+#endif
 	cv::Mat matSrc = cv::imread(image_name, 1);
 	if (!matSrc.data) {
 		fprintf(stderr, "read image error: %s", image_name.c_str());
@@ -511,7 +608,11 @@ int test_Code39_decode()
 	zxing::Ref<zxing::BinaryBitmap> bitmap(new zxing::BinaryBitmap(binarizer));
 	zxing::Ref<zxing::Result> result(reader->decode(bitmap, zxing::DecodeHints(zxing::DecodeHints::CODE_39_HINT)));
 
+#ifdef _MSC_VER
 	std::string txt = "E:/GitCode/BarCode_Test/test_images/Code39.txt";
+#else
+	std::string txt = "test_images/Code39.txt";
+#endif
 	std::ifstream in(txt);
 	if (!in.is_open()) {
 		fprintf(stderr, "fail to open file: %s\n", txt.c_str());
@@ -540,7 +641,11 @@ int test_Code39_decode()
 int test_Codabar_decode()
 {
 	// Blog: http://blog.csdn.net/fengbingchun/article/details/54577605
+#ifdef _MSC_VER
 	std::string image_name = "E:/GitCode/BarCode_Test/test_images/Codabar.png";
+#else
+	std::string image_name = "test_images/Codabar.png";
+#endif
 	cv::Mat matSrc = cv::imread(image_name, 1);
 	if (!matSrc.data) {
 		fprintf(stderr, "read image error: %s", image_name.c_str());
@@ -562,7 +667,11 @@ int test_Codabar_decode()
 	zxing::Ref<zxing::BinaryBitmap> bitmap(new zxing::BinaryBitmap(binarizer));
 	zxing::Ref<zxing::Result> result(reader->decode(bitmap, zxing::DecodeHints(zxing::DecodeHints::CODABAR_HINT)));
 
+#ifdef _MSC_VER
 	std::string txt = "E:/GitCode/BarCode_Test/test_images/Codabar.txt";
+#else
+	std::string txt = "test_images/Codabar.txt";
+#endif
 	std::ifstream in(txt);
 	if (!in.is_open()) {
 		fprintf(stderr, "fail to open file: %s\n", txt.c_str());
@@ -591,7 +700,11 @@ int test_Codabar_decode()
 int test_QRCode_decode()
 {
 	// Blog: http://blog.csdn.net/fengbingchun/article/details/54577456
+#ifdef _MSC_VER
 	std::string image_name = "E:/GitCode/BarCode_Test/test_images/QRCode.png";
+#else
+	std::string image_name = "test_images/QRCode.png";
+#endif
 	cv::Mat matSrc = cv::imread(image_name, 1);
 	if (!matSrc.data) {
 		fprintf(stderr, "read image error: %s", image_name.c_str());
@@ -613,7 +726,11 @@ int test_QRCode_decode()
 	zxing::Ref<zxing::BinaryBitmap> bitmap(new zxing::BinaryBitmap(binarizer));
 	zxing::Ref<zxing::Result> result(reader->decode(bitmap, zxing::DecodeHints(zxing::DecodeHints::QR_CODE_HINT)));
 
+#ifdef _MSC_VER
 	std::string txt = "E:/GitCode/BarCode_Test/test_images/QRCode.txt";
+#else
+	std::string txt = "test_images/QRCode.txt";
+#endif
 	std::ifstream in(txt);
 	if (!in.is_open()) {
 		fprintf(stderr, "fail to open file: %s\n", txt.c_str());
@@ -648,7 +765,11 @@ int test_QRCode_decode()
 int test_PDF417_decode()
 {
 	// Blog: http://blog.csdn.net/fengbingchun/article/details/54432986
+#ifdef _MSC_VER
 	std::string image_name = "E:/GitCode/BarCode_Test/test_images/PDF417.png";
+#else
+	std::string image_name = "test_images/PDF417.png";
+#endif
 	cv::Mat matSrc = cv::imread(image_name, 1);
 	if (!matSrc.data) {
 		fprintf(stderr, "read image error: %s", image_name.c_str());
@@ -670,7 +791,11 @@ int test_PDF417_decode()
 	zxing::Ref<zxing::BinaryBitmap> bitmap(new zxing::BinaryBitmap(binarizer));
 	zxing::Ref<zxing::Result> result(reader->decode(bitmap, zxing::DecodeHints(zxing::DecodeHints::PDF_417_HINT)));
 
+#ifdef _MSC_VER
 	std::string txt = "E:/GitCode/BarCode_Test/test_images/PDF417.txt";
+#else
+	std::string txt = "test_images/PDF417.txt";
+#endif
 	std::ifstream in(txt);
 	if (!in.is_open()) {
 		fprintf(stderr, "fail to open file: %s\n", txt.c_str());
@@ -698,7 +823,11 @@ int test_PDF417_decode()
 
 int test_Maxicode_decode()
 {
+#ifdef _MSC_VER
 	std::string image_name = "E:/GitCode/BarCode_Test/test_images/Maxicode.png";
+#else
+	std::string image_name = "test_images/Maxicode.png";
+#endif
 	cv::Mat matSrc = cv::imread(image_name, 1);
 	if (!matSrc.data) {
 		fprintf(stderr, "read image error: %s", image_name.c_str());
@@ -720,7 +849,11 @@ int test_Maxicode_decode()
 	zxing::Ref<zxing::BinaryBitmap> bitmap(new zxing::BinaryBitmap(binarizer));
 	zxing::Ref<zxing::Result> result(reader->decode(bitmap, zxing::DecodeHints(zxing::DecodeHints::MAXICODE_HINT)));
 
+#ifdef _MSC_VER
 	std::string txt = "E:/GitCode/BarCode_Test/test_images/Maxicode.txt";
+#else
+	std::string txt = "test_images/Maxicode.txt";
+#endif
 	std::ifstream in(txt);
 	if (!in.is_open()) {
 		fprintf(stderr, "fail to open file: %s\n", txt.c_str());
@@ -746,21 +879,17 @@ int test_Maxicode_decode()
 	return -1;
 }
 
-static void utf8_to_gbk(const char* utf8, char* gbk) {
-	const int maxlen = 128;
-	wchar_t unicode_str[maxlen];
-	int outlen = MultiByteToWideChar(CP_UTF8, 0, utf8, strlen(utf8), unicode_str, maxlen);
-	outlen = WideCharToMultiByte(CP_ACP, 0, unicode_str, outlen, gbk, 128, NULL, NULL);
-	gbk[outlen] = '\0';
-}
-
 int test_DataMatrix_decode()
 {
 	// Blog: http://blog.csdn.net/fengbingchun/article/details/54429722
+#ifdef _MSC_VER
 	std::string image_name = "E:/GitCode/BarCode_Test/test_images/data_matrix_encode.jpg";
+#else
+	std::string image_name = "test_images/data_matrix_encode.jpg";
+#endif
 	cv::Mat matSrc = cv::imread(image_name, 1);
 	if (!matSrc.data) {
-		fprintf(stderr, "read image error: %s", image_name.c_str());
+		fprintf(stderr, "read image error: %s\n", image_name.c_str());
 		return -1;
 	}
 	
@@ -779,7 +908,11 @@ int test_DataMatrix_decode()
 	zxing::Ref<zxing::BinaryBitmap> bitmap(new zxing::BinaryBitmap(binarizer));
 	zxing::Ref<zxing::Result> result(reader->decode(bitmap, zxing::DecodeHints(zxing::DecodeHints::DATA_MATRIX_HINT)));
 	
+#ifdef _MSC_VER
 	std::string txt = "E:/GitCode/BarCode_Test/test_images/data_matrix_encode.txt";
+#else
+	std::string txt = "test_images/data_matrix_encode.txt";
+#endif
 	std::ifstream in(txt);
 	if (!in.is_open()) {
 		fprintf(stderr, "fail to open file: %s\n", txt.c_str());
@@ -788,9 +921,7 @@ int test_DataMatrix_decode()
 
 	std::string str1;
 	std::getline(in, str1);
-	char tmp[128];
-	utf8_to_gbk(str1.c_str(), tmp);
-	std::string ret = std::string(tmp);
+	std::string ret = utf8_to_gbk(str1.c_str());
 	fprintf(stderr, "actual        result: %s\n", ret.c_str());
 	std::string str2 = result->getText()->getText();
 	fprintf(stdout, "recognization result: %s\n", str2.c_str());
@@ -811,7 +942,11 @@ int test_DataMatrix_decode()
 int test_Aztec_decode()
 {
 	// Blog: http://blog.csdn.net/fengbingchun/article/details/54347391
+#ifdef _MSC_VER
 	std::string image_name = "E:/GitCode/BarCode_Test/test_images/Aztec_tableShifts.png";
+#else
+	std::string image_name = "test_images/Aztec_tableShifts.png";
+#endif
 	cv::Mat matSrc = cv::imread(image_name, 1);
 	if (!matSrc.data) {
 		fprintf(stderr, "read image error: %s", image_name.c_str());
@@ -833,7 +968,11 @@ int test_Aztec_decode()
 	zxing::Ref<zxing::BinaryBitmap> bitmap(new zxing::BinaryBitmap(binarizer));
 	zxing::Ref<zxing::Result> result(reader->decode(bitmap, zxing::DecodeHints(zxing::DecodeHints::AZTEC_HINT)));
 
+#ifdef _MSC_VER
 	std::string txt = "E:/GitCode/BarCode_Test/test_images/Aztec_tableShifts.txt";
+#else
+	std::string txt = "test_images/Aztec_tableShifts.txt";
+#endif
 	std::ifstream in(txt);
 	if (!in.is_open()) {
 		fprintf(stderr, "fail to open file: %s\n", txt.c_str());
